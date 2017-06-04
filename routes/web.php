@@ -11,12 +11,5 @@
 |
 */
 
-Route::get('/', ['uses' => 'ProductsController@index', 'as' => 'products.index']);
-
-Route::get('/signup', ['uses'=> 'UsersController@getSignup', 'as' => 'users.signup']);
-
-Route::post('/signup', ['uses'=> 'UsersController@postSignup', 'as' => 'users.signup']);
-
-Route::get('/signin', ['uses'=> 'UsersController@getSignin', 'as' => 'users.signin']);
-
-Route::post('/signin', ['uses'=> 'UsersController@postSignin', 'as' => 'users.signin']);
+Route::get('/', ['uses' => 'ProductsController@getIndex', 
+	'as' => 'products.index']);

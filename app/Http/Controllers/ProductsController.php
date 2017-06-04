@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 class ProductsController extends Controller
 {
-    public function index()
+    public function getIndex()
     {
     	$products = Product::all();
     	return view('shop.index', compact('products'));
