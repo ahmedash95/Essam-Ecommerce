@@ -14,13 +14,19 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><i class="fa fa-shopping-cart"></i> Shopping Cart</a></li>
+        <li><a href="{{ route('products.index') }}"><i class="fa fa-shopping-cart"></i> Shopping Cart</a></li>
+        @if(auth()->check()) 
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> User Account <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>  
+          {{auth()->user()->email}} <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
+            <li><a href="{{ route('users.logout') }}">Logout</a></li>
           </ul>
         </li>
+        @else        
+        <li><a href="{{ route('users.signin') }}"><i class="fa fa-sign-in"></i> Login</a></li>
+        <li><a href="{{ route('users.signup') }}"><i class="fa fa-user-plus"></i> Sign up</a></li>
+        @endif
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

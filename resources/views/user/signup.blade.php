@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Sign up');
+@section('title', 'Sign up')
 
 @section('content')
 	

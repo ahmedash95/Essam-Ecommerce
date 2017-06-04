@@ -49,4 +49,10 @@ class UsersController extends Controller
     	}
     	return back();
     }
+
+    public function logout()
+    {
+    	auth()->logout();
+    	return back();
+    }
 }
