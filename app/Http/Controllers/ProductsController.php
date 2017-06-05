@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Product;
 use App\Cart;
 use Session;
@@ -11,8 +10,9 @@ class ProductsController extends Controller
 {
     public function index()
     {
-    	$products = Product::all();
-    	return view('shop.index', compact('products'));
+        $products = Product::all();
+
+        return view('shop.index', compact('products'));
     }
 
     public function addToCart(Request $request, $id)
