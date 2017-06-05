@@ -12,6 +12,11 @@
 */
 Route::get('/', ['uses' => 'ProductsController@index', 'as' => 'products.index']);
 
+Route::get('/add-to-cart/{id}', ['uses' => 'ProductsController@addToCart', 'as' => 'products.addToCart']);
+
+Route::get('/shopping-cart', ['uses' => 'ProductsController@getCart', 
+	'as' => 'products.getCart']);
+
 /**
  * Collect the routes that related to the user operation and give them a prefix
  */
