@@ -20,7 +20,7 @@ class ProductsController extends Controller
     {
     	$product = Product::find($id);
     	
-        Cart::add($product, $product->id);
+        Cart::add($product);
 
     	return redirect()->route('products.index');
 
