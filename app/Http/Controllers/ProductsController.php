@@ -28,12 +28,12 @@ class ProductsController extends Controller
 
     public function getCart()
     {
-    	if(!Session::has('cart')) {
+    	if(count(Cart::get()->items) < 1) {
             return view('shop.shopping-cart');
         }
 
-        $products = Cart::get()->items;
+        $items = Cart::get()->items;
         $totalPrice = Cart::get()->totalPrice;
-        return view('shop.shopping-cart', compact('products', 'totalPrice'));
+        return view('shop.shopping-cart', compact('items', 'totalPrice'));
     }
 }
