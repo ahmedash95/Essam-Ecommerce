@@ -17,7 +17,7 @@
         <li>
           <a href="{{ route('products.getCart') }}">
             <i class="fa fa-shopping-cart"></i> Shopping Cart   
-            <span class="badge"> {{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}
+            <span class="badge"> {{ \Facades\App\Cart::get()->totalQuantity }}
             </span>
           </a>
         </li>

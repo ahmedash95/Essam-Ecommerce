@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
-use App\Cart;
 use Session;
+use App\Product;
+use Facades\App\Cart;
+use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
@@ -18,10 +19,9 @@ class ProductsController extends Controller
     public function addToCart(Request $request, $id)
     {
     	$product = Product::find($id);
-    	$oldCart = Session::has('cart') ? Session::get('cart') : null;
-    	$cart = new Cart($oldCart);
-    	$cart->add($product, $product->id);
-    	$request->session()->put('cart', $cart);
+    	
+        Cart::add($product, $product->id);
+
     	return redirect()->route('products.index');
 
     }
@@ -32,10 +32,8 @@ class ProductsController extends Controller
             return view('shop.shopping-cart');
         }
 
-        $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
-        $products = $cart->items;
-        $totalPrice = $cart->totalPrice;
+        $products = Cart::get()->items;
+        $totalPrice = Cart::get()->totalPrice;
         return view('shop.shopping-cart', compact('products', 'totalPrice'));
     }
 }
