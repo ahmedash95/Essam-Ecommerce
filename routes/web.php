@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +15,9 @@ Route::get('/add-to-cart/{id}', ['uses' => 'ProductsController@addToCart', 'as' 
 
 Route::get('/shopping-cart', ['uses' => 'ProductsController@getCart', 
 	'as' => 'products.getCart']);
+
+Route::get('/checkout', ['uses' => 'ProductsController@getCheckout', 'as' => 'products.checkout']);
+Route::post('/checkout', ['uses' => 'ProductsController@postCheckout', 'as' => 'checkout']);
 
 /**
  * Collect the routes that related to the user operation and give them a prefix

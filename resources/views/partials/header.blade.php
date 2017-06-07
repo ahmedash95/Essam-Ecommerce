@@ -17,8 +17,7 @@
         <li>
           <a href="{{ route('products.getCart') }}">
             <i class="fa fa-shopping-cart"></i> Shopping Cart   
-            <span class="badge"> {{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}
-            </span>
+             {!! Session::has('cart') ? '<span class="badge">'.Session::get('cart')->totalQuantity.' </span>' : '' !!}
           </a>
         </li>
         @if(auth()->check()) 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
-use App\Cart;
+use Facades\App\Cart;
 use Session;
 
 class ProductsController extends Controller
@@ -18,24 +18,34 @@ class ProductsController extends Controller
     public function addToCart(Request $request, $id)
     {
     	$product = Product::find($id);
-    	$oldCart = Session::has('cart') ? Session::get('cart') : null;
-    	$cart = new Cart($oldCart);
-    	$cart->add($product, $product->id);
-    	$request->session()->put('cart', $cart);
+    	Cart::add($product);
     	return redirect()->route('products.index');
 
     }
 
     public function getCart()
     {
-    	if(!Session::has('cart')) {
+    	if(count(Cart::get()->items) == 0) {
             return view('shop.shopping-cart');
         }
 
-        $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
-        $products = $cart->items;
-        $totalPrice = $cart->totalPrice;
-        return view('shop.shopping-cart', compact('products', 'totalPrice'));
+        $items = Cart::get()->items;
+        $totalPrice = Cart::get()->totalPrice;
+        return view('shop.shopping-cart', compact('items', 'totalPrice'));
+    }
+
+    public function getCheckout()
+    {
+        if(count(Cart::get()->items) < 1) {
+            return view('shop.shopping-cart');
+        }
+        $items = Cart::get()->items;
+        $totalPrice = Cart::get()->totalPrice;
+        return view('shop.checkout', compact('totalPrice'));
+    }
+
+    public function postCheckout(Request $request)
+    {
+        # code...
     }
 }
